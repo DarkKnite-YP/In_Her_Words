@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Her Words</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            width: 80%;
+            margin: 0 auto;
+        }
+        label, select, p {
+            display: block;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            resize: vertical;
+        }
+        #options {
+            margin-top: 10px;
+        }
+        #options p {
+            font-weight: bold;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function toggleOptions() {
+            var hostility = document.getElementById("hostility").value;
+            var options = document.getElementById("options");
+
+            if (hostility === "Hostile") {
+                options.style.display = "block";
+            } else {
+                options.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>In Her Words</h1>
+    <form action="/save" method="post" oninput="toggleOptions()">
+        <label for="text">Enter Your Text:</label>
+        <textarea id="text" name="text" rows="4" cols="50"></textarea>
+        <p>Select hostility level:</p>
+        <select id="hostility" name="hostility">
+            <option value="Non-hostile">Non-hostile</option>
+            <option value="Hostile">Hostile</option>
+        </select>
+        <div id="options" style="display: none;">
+            <p>Select an option:</p>
+            <input type="radio" id="hate" name="option" value="Hate">
+            <label for="hate">Hate</label>
+            <br>
+            <input type="radio" id="fake" name="option" value="Fake">
+            <label for="fake">Fake</label>
+            <br>
+            <input type="radio" id="offensive" name="option" value="Offensive">
+            <label for="offensive">Offensive</label>
+            <br>
+            <input type="radio" id="defamation" name="option" value="Defamation">
+            <label for="defamation">Defamation</label>
+            <br>
+        </div>
+        <br>
+        <input type="submit" value="Save">
+    </form>
+    <form action="/check_hostility" method="get">
+        <input type="submit" value="Check for Hostility">
+    </form>
+</body>
+</html>
